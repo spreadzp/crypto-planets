@@ -5,7 +5,7 @@ import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Metad
 
 contract Planet is ERC721, ERC721Metadata  {
 
-	constructor() ERC721Metadata("UdaTokenName", "USYMB") public {
+	constructor() ERC721Metadata("Start", "Planet") public {
 	}
 
 	struct OnePlanet {
@@ -15,18 +15,18 @@ contract Planet is ERC721, ERC721Metadata  {
 		string dec;
 		string mag;
 		bytes32 coordsHash;
-		uint256 t;
+		uint256 temperaturePlanet;
+		uint256 speed;
 		uint256 orbit;
-		uint256 degree;
-		// uint256 consist_of;
-		//uint256 surfase;
-		//uint256 V;
 	}
 
 	mapping(uint256 => OnePlanet) public tokenIdToStarInfo;
 	mapping(bytes32 => bool) public unique;
+	mapping(address => uint256) public idPlanetOfOwner;
 	mapping(uint256 => uint256) public starsForSale;
-	mapping(address => uint256[]) public starsOwner;
+	mapping(address => uint256) public starsOwner;
+
+	event showId(uint256 Id);
 
 	uint256 public tokenAt;
 
@@ -48,12 +48,28 @@ contract Planet is ERC721, ERC721Metadata  {
 		uint256 tokenId = tokenAt;
 		tokenIdToStarInfo[tokenId] = newStar;
 		unique[coordinates] = true;
-		starsOwner[msg.sender].push(tokenAt);
+		starsOwner[msg.sender] = tokenAt;
 		_mint(msg.sender, tokenId);
 	}
 
-	function getListPlanets(address ownerOfPlanet) public view returns(uint256[] memory) {
-		return starsOwner[ownerOfPlanet];
+	function getListPlanets(address ownerOfPlanet) public view returns
+	(string memory, string memory, string memory, string memory, string memory, bytes32, uint256, uint256, uint256) {
+		uint256 idPlanet = starsOwner[ownerOfPlanet];
+		string memory starName = tokenIdToStarInfo[idPlanet].starName;
+		string memory starStory = tokenIdToStarInfo[idPlanet].starStory;
+		string memory ra = tokenIdToStarInfo[idPlanet].ra;
+		string memory dec = tokenIdToStarInfo[idPlanet].dec;
+		string memory mag = tokenIdToStarInfo[idPlanet].mag;
+		return (starName, starStory, ra, dec, mag,
+		tokenIdToStarInfo[idPlanet].coordsHash, tokenIdToStarInfo[idPlanet].temperaturePlanet,
+		tokenIdToStarInfo[idPlanet].speed, tokenIdToStarInfo[idPlanet].orbit
+		);
+	}
+
+	function getIdPlanet(address ownerOfPlanet) public  returns (uint256) {
+		uint256 idPlanet = starsOwner[ownerOfPlanet];
+		emit showId(idPlanet);
+		return idPlanet;
 	}
 
 	function getTokenIdToStarInfo(uint256 tokenId) public view returns(string memory, string memory, string memory, string memory, string memory) {

@@ -185,6 +185,40 @@ function claimButtonClicked() {
         '<b>Loading...</b> Please wait...!';
 
       shortTx = result.substring(0, 4);
+      const windoWidth = Math.max(
+        document.documentElement.clientWidth,
+        window.innerWidth || 0
+      );
+      const windowHeight = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight || 0
+      );
+      const url = '/star';
+      const data = {
+        starInfo: { result, ra, dec, mag },
+        userInfo: { windoWidth, windowHeight }
+      };
+
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(response => {
+          // It should retrieve something like: {"imagePath":"public/images/2.png"}
+          //alert(JSON.stringify(response));
+          document.querySelector('.retrieve').src = response.imagePath;
+          document.querySelector('.retrieve').onclick = function() {
+            modalWindow.classList.add('is-active');
+            modalContent(showFullImage, response.imagePath);
+            modalEventsForClosing(modalWindow, 'is-active');
+          };
+        })
+        //.then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
 
       if (!error) {
         particularSection =
@@ -201,7 +235,45 @@ function claimButtonClicked() {
         );
         const listPlanet = starNotary.getListPlanets.sendTransaction(account);
         console.log('@@@@@listPlanet :', listPlanet);
-        console.log(result);
+        const idPlanet = starNotary.getIdPlanet.sendTransaction(account);
+        console.log('@@@@@idPlanet :', idPlanet);
+
+        const secStarStory =
+          '<span style="display: block;"><span class="icon"><i class="fas fa-signature"></i></span>' +
+          result +
+          '</span>';
+          name = document.querySelector('#star-name').value;
+        const secStarInfo =
+          '<div class="buttons has-addons"> <span class="button">Name: ' +
+          document.querySelector('#star-name').value +
+          '</span> <span class="button">Orbit: ' +
+          document.querySelector('#star-ra').value +
+          '</span> <span class="button">Speed: ' +
+          document.querySelector('#star-dec').value +
+          '</span> </div>'
+          '</span> <span class="button">Temp: ' +
+          document.querySelector('#star-mag').value;
+          '</span> </div>'
+
+        particularSection = secStarStory;
+        particularSection += secStarInfo;
+        let starResponse = basicTemplateCard(
+          'retrieve',
+          radar,
+          result[0],
+          particularSection
+        );
+
+        document.querySelector('#star-show').innerHTML = starResponse;
+        const urlIm = 'images/12.png';
+        document.querySelector('.retrieve').src = urlIm;
+            document.querySelector('.retrieve').onclick = function() {
+              modalWindow.classList.add('is-active');
+              modalContent(showFullImage, urlIm);
+              modalEventsForClosing(modalWindow, 'is-active');
+            };
+        //checkStarByTx();
+        
         const starClaimedEvent = starNotary.Transfer({ from: account });
         starClaimedEvent.watch(function(error, result) {
          /*  const listPlanet = starNotary.getListPlanets(account);
@@ -228,15 +300,17 @@ function checkStarByTx() {
       return;
     }
     const account = accounts[0];
+    console.log('account ##:', account);
     const tokenId = document.querySelector('#star-token').value;
-    if (tokenId == '' || tokenId == ' ') {
+    console.log('tokenId :', tokenId);
+  /*   if (tokenId == '' || tokenId == ' ') {
       alert('Token should be something...!');
       return;
     }
     if (!tokenId.match(/^[0-9]*$/gm)) {
       alert('Token should be a number...!');
       return;
-    }
+    } */
 
     // We pass thecurrent window´s size
     const windoWidth = Math.max(

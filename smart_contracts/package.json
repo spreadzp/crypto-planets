@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gan": "npx ganache-cli",
-    "td": "npx truffle develop && migrate",
+    "td": "npx truffle migrate",
     "start": "node server.js"
   },
   "keywords": [],

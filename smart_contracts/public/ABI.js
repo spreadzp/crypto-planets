@@ -40,24 +40,86 @@ const ABI = [
     signature: '0x0564b130'
   },
   {
-    constant: true,
-    inputs: [
+    "constant": true,
+    "inputs": [
       {
-        name: 'ownerOfPlanet',
-        type: 'address'
+        "name": "ownerOfPlanet",
+        "type": "address"
       }
-    ],   
-    name: 'getListPlanets',
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x5f3ff33c',
-      outputs: [
-        {
-          name: "",
-          type: 'uint256[]'
-        }
-      ],
+    ],
+    "name": "getListPlanets",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "bytes32"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "ownerOfPlanet",
+        "type": "address"
+      }
+    ],
+    "name": "getIdPlanet",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "Id",
+        "type": "uint256"
+      }
+    ],
+    "name": "showId",
+    "type": "event"
   },
   {
     constant: true,

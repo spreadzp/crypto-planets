@@ -13,10 +13,11 @@ app.use(
 app.use(bodyParser.json());
 
 app.post('/star', async function(req, res) {
-  if (req.get('host') !== '127.0.0.1:3000') {
+  console.log('req.body.starInfo :', req.body);
+  /* if (req.get('host') !== '127.0.0.1:3000') {
     res.send({ status: 'domain error' });
     return;
-  }
+  } */
 
   // Replace maybe with PhantomJS and some npm package
   // And check: https://www.npmjs.com/package/express-session
@@ -24,8 +25,10 @@ app.post('/star', async function(req, res) {
   // User closes tab, closes session and deletes image
 
   // Configuration api http://server7.wikisky.org/api?
-  let ra = req.body.starInfo.ra.replace(/ /g, '%20');
-  let dec = req.body.starInfo.dec.replace(/ /g, '%20');
+ /*  let ra = req.body.starInfo.ra.replace(/ /g, '%20');
+  let dec = req.body.starInfo.dec.replace(/ /g, '%20'); */
+  let ra = req.body.starInfo.ra;
+  let dec = req.body.starInfo.dec;
 
   // Example: 'http://server1.sky-map.org/skywindow?ra=1%2003%2033.35&de=-49%2031%2038.1&zoom=10&show_box=1'
   const skyUrl =
@@ -34,8 +37,8 @@ app.post('/star', async function(req, res) {
     '&de=' +
     dec +
     '&zoom=10&show_box=1';
-
-  const imagePath = 'images/' + req.body.starInfo.tokenId + '.png';
+console.log('skyUrl :', skyUrl);
+  const imagePath = 'images/' + req.body.starInfo.result + '.png';
   nodeServerSS.fromURL(
     skyUrl,
     'public/' + imagePath,
