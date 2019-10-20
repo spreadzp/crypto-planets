@@ -11,7 +11,9 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
+app.get('/newPage', async function(req, res) {
+  res.sendFile(__dirname + '/public/page.html');
+})
 app.post('/star', async function(req, res) {
   console.log('req.body.starInfo :', req.body);
   /* if (req.get('host') !== '127.0.0.1:3000') {

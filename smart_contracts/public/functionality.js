@@ -250,9 +250,9 @@ function claimButtonClicked() {
           document.querySelector('#star-ra').value +
           '</span> <span class="button">Speed: ' +
           document.querySelector('#star-dec').value +
-          '</span> </div>'
-          '</span> <span class="button">Temp: ' +
-          document.querySelector('#star-mag').value;
+          '</span>'+
+          '<span class="button" onClick="redirect()">Temp: ' +
+          document.querySelector('#star-mag').value +
           '</span> </div>'
 
         particularSection = secStarStory;
@@ -260,7 +260,7 @@ function claimButtonClicked() {
         let starResponse = basicTemplateCard(
           'retrieve',
           radar,
-          result[0],
+          result,
           particularSection
         );
 
@@ -291,6 +291,9 @@ function claimButtonClicked() {
       }
     });
   });
+}
+function redirect() {
+  window.location = "/newPage"
 }
 
 function checkStarByTx() {
