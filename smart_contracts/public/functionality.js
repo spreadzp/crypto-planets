@@ -199,12 +199,14 @@ function claimButtonClicked() {
           name,
           particularSection
         );
-
+        const listPlanet = starNotary.getListPlanets.sendTransaction(account);
+        console.log('@@@@@listPlanet :', listPlanet);
+        console.log(result);
         const starClaimedEvent = starNotary.Transfer({ from: account });
         starClaimedEvent.watch(function(error, result) {
-          const listPlanet = starNotary.getListPlanets(account);
+         /*  const listPlanet = starNotary.getListPlanets(account);
           console.log('@@@@@listPlanet :', listPlanet);
-          console.log(result);
+          console.log(result); */
           if (!error) {
             console.log('If I see this Tx should be done!');
             //location.reload();

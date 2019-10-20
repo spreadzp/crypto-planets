@@ -1,7 +1,5 @@
 pragma solidity ^0.5.0;
 
-// For remix
-//import "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/master/contracts/token/ERC721/ERC721.sol";
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol';
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Metadata.sol';
 
@@ -17,14 +15,12 @@ contract Planet is ERC721, ERC721Metadata  {
 		string dec;
 		string mag;
 		bytes32 coordsHash;
-		string star;
-		string D;
-		string t;
-		string orbit;
-		string degree;
-		string consist_of;
-		string surfase;
-		string V;
+		uint256 t;
+		uint256 orbit;
+		uint256 degree;
+		// uint256 consist_of;
+		//uint256 surfase;
+		//uint256 V;
 	}
 
 	mapping(uint256 => OnePlanet) public tokenIdToStarInfo;
@@ -47,7 +43,7 @@ contract Planet is ERC721, ERC721Metadata  {
 
 		require(!checkIfStarExist(coordinates), "We have that Star!");
 
-		OnePlanet memory newStar = OnePlanet(starName, starStory, ra, dec, mag, coordinates, "", "", "", "", "", "", "", "");
+		OnePlanet memory newStar = OnePlanet(starName, starStory, ra, dec, mag, coordinates, 5, 6, 5 );  //, "" , "", "", "", "", "");
 
 		uint256 tokenId = tokenAt;
 		tokenIdToStarInfo[tokenId] = newStar;

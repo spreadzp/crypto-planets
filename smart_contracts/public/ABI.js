@@ -26,7 +26,7 @@ const ABI = [
         name: '',
         type: 'uint256'
       }
-    ],
+    ],   
     name: 'starsForSale',
     outputs: [
       {
@@ -38,6 +38,26 @@ const ABI = [
     stateMutability: 'view',
     type: 'function',
     signature: '0x0564b130'
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        name: 'ownerOfPlanet',
+        type: 'address'
+      }
+    ],   
+    name: 'getListPlanets',
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    signature: '0x5f3ff33c',
+      outputs: [
+        {
+          name: "",
+          type: 'uint256[]'
+        }
+      ],
   },
   {
     constant: true,

@@ -73,7 +73,7 @@ Private Keys
 
 HD Wallet
 ==================
-Mnemonic:      ...?
+Mnemonic:      series wealth practice present panther fire begin hospital harsh tenant cereal fruit
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 
 Gas Price

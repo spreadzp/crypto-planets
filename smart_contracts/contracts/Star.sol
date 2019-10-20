@@ -1,8 +1,6 @@
 pragma solidity ^0.5.0;
 
-// For remix
-//import "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/master/contracts/token/ERC721/ERC721.sol";
-import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol';
+ import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol';
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Metadata.sol';
 
 contract Star is ERC721, ERC721Metadata  {
@@ -17,9 +15,8 @@ contract Star is ERC721, ERC721Metadata  {
 		string dec;
 		string mag;
 		bytes32 coordsHash;
-		string star;
-		string D;
-		string t;
+		uint256 diameter;
+		uint256 temp;
 	}
 
 	mapping(uint256 => OneStar) public tokenIdToStarInfo;
@@ -42,7 +39,7 @@ contract Star is ERC721, ERC721Metadata  {
 
 		require(!checkIfStarExist(coordinates), "We have that Star!");
 
-		OneStar memory newStar = OneStar(starName, starStory, ra, dec, mag, coordinates, "", "", "");
+		OneStar memory newStar = OneStar(starName, starStory, ra, dec, mag, coordinates, 5, 7);
 
 		uint256 tokenId = tokenAt;
 		tokenIdToStarInfo[tokenId] = newStar;

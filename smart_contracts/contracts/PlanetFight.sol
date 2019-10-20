@@ -12,7 +12,7 @@ contract PlanetFight {
       string V;
 
   }
-  
+
  function fight (Planet planet1, Planet planet2) public {
 
  }
