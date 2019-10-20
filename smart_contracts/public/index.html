@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #213744">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Star Notary</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+ 
+  <script src="/ABI.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <div class="modal"></div>
+  <div class="screenBackground"></div>
+  <section class="section" id="screen">
+    <div class="container">
+      <div class="column">
+        <h1 class="title">Star Notary</h1>
+        <h2 class="subtitle">Register your Star</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="text" placeholder="Star Name" id="star-name" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-star"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="is-divider-vertical" data-content="AND"></div>
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="text" placeholder="Star Story" id="star-story" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-signature"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Star RA" id="star-ra" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-map-marked-alt"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="is-divider-vertical" data-content="AND"></div>
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Star DEC" id="star-dec" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-map-marked-alt"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Star MAG" id="star-mag" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-map-marked-alt"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="corrdinatesValidationWrap">
+          <article class="message is-danger">
+            <div class="message-body">
+              <div class="corrdinatesValidation">
+
+              </div>
+            </div>
+          </article>
+        </div>
+        <div id="star-answer"></div>
+        <div class="container">
+          <div class="field is-grouped is-grouped-centered">
+            <p class="control" style="margin-top: 20px;">
+              <a class="button is-primary" id="claim-button" onclick="claimButtonClicked()">
+                Submit
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="column">
+          <h2 class="subtitle">Retrieve Star</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4">
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Place your Token" id="star-token" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-fingerprint"></i>
+                </span>
+              </p>
+              <div class="field is-grouped ">
+                <p class="control" style="margin-top: 30px;">
+                  <a class="button is-primary" id="check-button" onclick="checkStarByTx()">
+                    Retrieve Star Data
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="is-divider-vertical" data-content="AND"></div>
+          <div class="column">
+          </div>
+        </div>
+        <div id="star-show"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/web3@0.20.6/dist/web3.min.js"></script>
+<script src="/functionality.js"></script>
+</body>
+</html>

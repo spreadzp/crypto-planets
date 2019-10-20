@@ -1,0 +1,26 @@
+{
+  "name": "smart_contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gan": "npx ganache-cli",
+    "td": "npx truffle develop && migrate",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "node-server-screenshot": "^0.2.1",
+    "openzeppelin-solidity": "^2.1.1",
+    "serve-static": "^1.13.2",
+    "truffle-hdwallet-provider": "^1.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
